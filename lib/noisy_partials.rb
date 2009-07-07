@@ -1,12 +1,13 @@
 module ActionView
-  module Partials
-    def render_partial_with_explanation(*args) 
-      start_explanation = "\n<!-- START PARTIAL #{args[0]} -->\n"
-      end_explanation = "\n<!-- END PARTIAL #{args[0]} -->\n"
-      start_explanation + render_partial_without_explanation(*args).to_s + end_explanation
+  module RenderablePartial
+    def render_partial_with_marks(*args)
+%Q{
+<!-- Partial start #{path} -->
+#{render_partial_without_marks(*args)}
+<!-- Partial end #{path} -->
+}
     end
 
-    alias_method_chain :render_partial,:explanation     
+    alias_method_chain :render_partial, :marks
   end
 end
- 

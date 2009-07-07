@@ -1,4 +1,3 @@
-if RAILS_ENV == "development"
-  require "noisy_partials"
+if RAILS_ENV == 'development'
+  require 'noisy_partials'
 end
-
